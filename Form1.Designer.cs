@@ -28,41 +28,46 @@
         /// </summary>
         private void InitializeComponent()
         {
-            blazorWebView1 = new Microsoft.AspNetCore.Components.WebView.WindowsForms.BlazorWebView();
-            button1 = new Button();
-            SuspendLayout();
+            this.blazorWebView1 = new Microsoft.AspNetCore.Components.WebView.WindowsForms.BlazorWebView();
+            this.button1 = new Button();
+            this.SuspendLayout();
             // 
             // blazorWebView1
             // 
-            blazorWebView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            blazorWebView1.Location = new Point(208, 0);
-            blazorWebView1.Name = "blazorWebView1";
-            blazorWebView1.Size = new Size(602, 450);
-            blazorWebView1.StartPath = "/";
-            blazorWebView1.TabIndex = 0;
-            blazorWebView1.Text = "Click me";
-            blazorWebView1.Click += blazorWebView1_Click;
+            this.blazorWebView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            this.blazorWebView1.BackColor = Color.Cyan;
+            this.blazorWebView1.Location = new Point(182, 0);
+            this.blazorWebView1.Margin = new Padding(3, 2, 3, 2);
+            this.blazorWebView1.Name = "blazorWebView1";
+            this.blazorWebView1.Size = new Size(527, 338);
+            this.blazorWebView1.StartPath = "/";
+            this.blazorWebView1.TabIndex = 0;
+            this.blazorWebView1.Text = "Click me";
+            this.blazorWebView1.Click += this.blazorWebView1_Click;
             // 
             // button1
             // 
-            button1.Location = new Point(27, 34);
-            button1.Name = "button1";
-            button1.Size = new Size(175, 47);
-            button1.TabIndex = 1;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_ClickAsync;
+            this.button1.Location = new Point(12, 26);
+            this.button1.Margin = new Padding(3, 2, 3, 2);
+            this.button1.Name = "button1";
+            this.button1.Size = new Size(153, 35);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += this.button1_ClickAsync;
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(810, 450);
-            Controls.Add(button1);
-            Controls.Add(blazorWebView1);
-            Name = "Form1";
-            Text = "Form1";
-            ResumeLayout(false);
+            this.AutoScaleDimensions = new SizeF(7F, 15F);
+            this.AutoScaleMode = AutoScaleMode.Font;
+            this.BackColor = Color.FromArgb(192, 0, 192);
+            this.ClientSize = new Size(709, 338);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.blazorWebView1);
+            this.Margin = new Padding(3, 2, 3, 2);
+            this.Name = "Form1";
+            this.Text = "Form1";
+            this.ResumeLayout(false);
         }
 
         #endregion
