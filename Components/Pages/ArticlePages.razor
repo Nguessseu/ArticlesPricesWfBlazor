@@ -7,20 +7,20 @@
 @using ProtoBuf.Grpc.Client
 @using System.Text.Json
 @inject IJSRuntime JS
-@using System.Text.Json
 
 
 <h1>List of Articles</h1>
 <div class="parent">
     <button class="btn btn-primary_create " @onclick="CreateArticle">Create Article</button>
     <button class="btn btn-danger_win" @onclick="DeleteSelectedArticles">Delete Selected</button>
-    <button class="btn btn-primary" @onclick="ShowArticle">Show Article</button>
+    <button class="btn btn-primary" @onclick="ShowArticleJS">Show Article(js)</button>
+    <button class="btn btn-primary button_black" @onclick="ShowArticleForms">Show Article(forms)</button>
 </div>
 
 
 @if (showCreateArticleModal)
 {
-    <div >
+    <div>
         <div class="modal" tabindex="-1" role="dialog" style="display:block">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -50,7 +50,7 @@
                 </div>
             </div>
         </div>
-</div>
+    </div>
 }
 
 <table class="child, table">
@@ -61,33 +61,30 @@
             <th>Name</th>
             <th>Brand</th>
             <th>Prices</th>
-            <!-- Add more table headers as needed -->
         </tr>
     </thead>
+    <tbody>
         @foreach (var article in articles)
         {
-            <tbody>
-                <tr>
-                    <td>
-                        <input type="checkbox" @onclick="() => ToggleSelection(article.Id)" />
-                        <span class="checkmark"></span>
-                    </td>
-                    <td>@article.Id</td>
-                    <td>@article.Name</td>
-                    <td>@article.Brand</td>
-
-                    @foreach (var price in article.Prices)
-                    {
-                        <ul>
-                            <li>
-                                @price.Amount
-                            </li>
-                        </ul>
-                    }
-                    <!-- Add more table cells for additional article properties -->
-                </tr>
-            </tbody>
+            <tr>
+                <td>
+                   <input type="checkbox" @onclick="() => ToggleSelection(article.Id)" />                   
+                </td> 
+                <td>@article.Id</td>
+                <td>@article.Name</td>
+                <td>@article.Brand</td>
+                
+            @foreach (var price in article.Prices)
+            {
+            <ul>
+            <li>
+            @price.Amount
+            </li>
+            </ul>
+            }
+            </tr>
         }
+    </tbody>
 </table>
 
 @code {
@@ -172,7 +169,7 @@
         }
     }
 
-    private async Task ShowArticle()
+    private async Task ShowArticleJS()
     {
         foreach (var selectedId in selectedArticles)
         {
@@ -182,7 +179,18 @@
             string jsonDataBrand = JsonSerializer.Serialize(currentArticle.Brand);
             var display = await JS.InvokeAsync<string>("displayArticle", jsonDataName, jsonDataBrand);
         }
-       ;
+    }
+
+    private async Task ShowArticleForms()
+    {
+        foreach (var selectedId in selectedArticles)
+        {
+            Int32Value id = new Int32Value { Value = selectedId };
+            await GetArticlebyId(id);
+            string jsonDataName = JsonSerializer.Serialize(currentArticle.Name);
+            string jsonDataBrand = JsonSerializer.Serialize(currentArticle.Brand);
+            EventBus.ShowMessageBox($"{jsonDataBrand}, {jsonDataBrand}");
+        }
     }
 
 

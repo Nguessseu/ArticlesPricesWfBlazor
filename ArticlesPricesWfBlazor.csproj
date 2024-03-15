@@ -12,7 +12,6 @@
     <None Remove="App.xaml" />
     <None Remove="Components\Layout\MainLayout.razor.css" />
     <None Remove="Components\Layout\NavMenu.razor.css" />
-    <None Remove="MainPage.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,9 +20,6 @@
     </Content>
     <Content Include="Components\Layout\MainLayout.razor.css" />
     <Content Include="Components\Layout\NavMenu.razor.css" />
-    <Content Include="MainPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -36,10 +32,10 @@
 
   <ItemGroup>
     <Reference Include="ERP.Backend.Interface">
-      <HintPath>..\..\ERP.Backend.Prototype\ERP.Backend.Interface\bin\Debug\net8.0\ERP.Backend.Interface.dll</HintPath>
+      <HintPath>..\ERP.Backend.Prototype\ERP.Backend.Interface\bin\Debug\net8.0\ERP.Backend.Interface.dll</HintPath>
     </Reference>
     <Reference Include="ERP.Backend.Models">
-      <HintPath>..\..\ERP.Backend.Prototype\ERP.Backend.Interface\bin\Debug\net8.0\ERP.Backend.Models.dll</HintPath>
+      <HintPath>..\ERP.Backend.Prototype\ERP.Backend.Interface\bin\Debug\net8.0\ERP.Backend.Models.dll</HintPath>
     </Reference>
   </ItemGroup>
 

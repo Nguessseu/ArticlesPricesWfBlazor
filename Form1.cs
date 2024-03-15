@@ -26,6 +26,13 @@ namespace ArticlesPricesWfBlazor
             blazorWebView1.Services = services.BuildServiceProvider();
             blazorWebView1.RootComponents.Add<ArticlePages>("#app");
             //blazorWebView1.RootComponents.Add<NavMenu>("#app");
+
+            EventBus.ShowMessageBoxEvent += this.EventBus_ShowMessageBox;
+        }
+
+        private void EventBus_ShowMessageBox(string message)
+        {
+            MessageBox.Show(message);
         }
 
         private void blazorWebView1_Click(object sender, EventArgs e)
