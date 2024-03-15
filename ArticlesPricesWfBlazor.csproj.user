@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Compile Update="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="wwwroot\css\app.css">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Update="wwwroot\css\bootstrap\bootstrap.min.cs">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Update="wwwroot\index.html">
+      <SubType>Component</SubType>
+    </Content>
+  </ItemGroup>
+</Project>

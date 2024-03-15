@@ -1,0 +1,199 @@
+﻿@page "/article"
+@using ERP.Backend.gRPCCodeFirst.Interfaces
+@using Google.Protobuf.WellKnownTypes
+@using ERP.Backend.Models
+@using Grpc.Net.Client
+@using Microsoft.JSInterop
+@using ProtoBuf.Grpc.Client
+@using System.Text.Json
+@inject IJSRuntime JS
+@using System.Text.Json
+
+
+<h1>List of Articles</h1>
+<div class="parent">
+    <button class="btn btn-primary_create " @onclick="CreateArticle">Create Article</button>
+    <button class="btn btn-danger_win" @onclick="DeleteSelectedArticles">Delete Selected</button>
+    <button class="btn btn-primary" @onclick="ShowArticle">Show Article</button>
+</div>
+
+
+@if (showCreateArticleModal)
+{
+    <div >
+        <div class="modal" tabindex="-1" role="dialog" style="display:block">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Create New Article</h5>
+                        <button type="button" class="close" @onclick="CloseCreateArticleModal">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Form for creating new article -->
+                        <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input type="text" class="form-control" @bind="newArticle.Name" />
+                        </div>
+                        <div class="form-group">
+                            <label for="brand">Brand:</label>
+                            <input type="text" class="form-control" @bind="newArticle.Brand" />
+                        </div>
+
+                        <!-- Add more fields for additional article properties as needed -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-save" @onclick="SaveArticle">Save</button>
+                        <button type="button" class="btn btn-quit" @onclick="CloseCreateArticleModal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+}
+
+<table class="child, table">
+    <thead>
+        <tr>
+            <th> </th>
+            <th>Article ID</th>
+            <th>Name</th>
+            <th>Brand</th>
+            <th>Prices</th>
+            <!-- Add more table headers as needed -->
+        </tr>
+    </thead>
+        @foreach (var article in articles)
+        {
+            <tbody>
+                <tr>
+                    <td>
+                        <input type="checkbox" @onclick="() => ToggleSelection(article.Id)" />
+                        <span class="checkmark"></span>
+                    </td>
+                    <td>@article.Id</td>
+                    <td>@article.Name</td>
+                    <td>@article.Brand</td>
+
+                    @foreach (var price in article.Prices)
+                    {
+                        <ul>
+                            <li>
+                                @price.Amount
+                            </li>
+                        </ul>
+                    }
+                    <!-- Add more table cells for additional article properties -->
+                </tr>
+            </tbody>
+        }
+</table>
+
+@code {
+    private bool showCreateArticleModal = false;
+    private List<Article> articles = new List<Article>();
+    private List<Price> prices = new List<Price>();
+
+    private Article newArticle = new Article();
+    private Article currentArticle = new Article();
+
+    private Price newPrice = new Price();
+
+    private async Task CreateArticle()
+    {
+        showCreateArticleModal = true;
+    }
+
+    private void CloseCreateArticleModal()
+    {
+        showCreateArticleModal = false;
+    }
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetArticles();
+    }
+
+    private async Task GetArticles()
+    {
+        using (var channel = GrpcChannel.ForAddress("http://localhost:5198"))
+        {
+            var client = channel.CreateGrpcService<IArtikelDistributedService>();
+            var reply = await client.GetArticleList(new Empty());
+            articles = reply.ToList();
+        }
+    }
+
+    private async Task SaveArticle()
+    {
+        using (var channel = GrpcChannel.ForAddress(("http://localhost:5198")))
+        {
+            var client = channel.CreateGrpcService<IArtikelDistributedService>();
+            var reply = await client.CreateArticle(newArticle);
+            newArticle = new Article();
+            showCreateArticleModal = false;
+        }
+    }
+
+
+    // Delete Article
+    private List<int> selectedArticles = new List<int>();
+
+    private async Task DeleteSelectedArticles()
+    {
+        foreach (var id in selectedArticles)
+        {
+            await DeleteArticle(id);
+        }
+        selectedArticles.Clear();
+        await GetArticles();
+    }
+
+    private void ToggleSelection(int articleId)
+    {
+        if (selectedArticles.Contains(articleId))
+        {
+            selectedArticles.Remove(articleId);
+        }
+        else
+        {
+            selectedArticles.Add(articleId);
+        }
+    }
+
+    private async Task DeleteArticle(int id)
+    {
+        using (var channel = GrpcChannel.ForAddress(("http://localhost:5198")))
+        {
+            var client = channel.CreateGrpcService<IArtikelDistributedService>();
+            await client.DeleteArticle(new Int32Value { Value = id });
+        }
+    }
+
+    private async Task ShowArticle()
+    {
+        foreach (var selectedId in selectedArticles)
+        {
+            Int32Value id = new Int32Value { Value = selectedId };
+            await GetArticlebyId(id);
+            string jsonDataName = JsonSerializer.Serialize(currentArticle.Name);
+            string jsonDataBrand = JsonSerializer.Serialize(currentArticle.Brand);
+            var display = await JS.InvokeAsync<string>("displayArticle", jsonDataName, jsonDataBrand);
+        }
+       ;
+    }
+
+
+    private async Task GetArticlebyId(Int32Value id)
+    {
+        using (var channel = GrpcChannel.ForAddress("http://localhost:5198"))
+        {
+            var client = channel.CreateGrpcService<IArtikelDistributedService>();
+            var reply = await client.GetArticleById(id);
+            currentArticle = reply;
+        }
+    }
+
+}

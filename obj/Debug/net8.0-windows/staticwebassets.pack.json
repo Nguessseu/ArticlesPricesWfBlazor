@@ -1,0 +1,53 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\Armand Njomo\\source\\repos\\ArticlesPricesWfBlazor\\ArticlesPricesWfBlazor\\Components\\Pages\\ArticlePages.razor.js",
+      "PackagePath": "staticwebassets\\Components\\Pages\\ArticlePages.razor.js"
+    },
+    {
+      "Id": "C:\\Users\\Armand Njomo\\source\\repos\\ArticlesPricesWfBlazor\\ArticlesPricesWfBlazor\\obj\\Debug\\net8.0-windows\\scopedcss\\bundle\\ArticlesPricesWfBlazor.styles.css",
+      "PackagePath": "staticwebassets\\ArticlesPricesWfBlazor.styles.css"
+    },
+    {
+      "Id": "C:\\Users\\Armand Njomo\\source\\repos\\ArticlesPricesWfBlazor\\ArticlesPricesWfBlazor\\wwwroot\\css\\app.Designer.css",
+      "PackagePath": "staticwebassets\\css\\app.Designer.css"
+    },
+    {
+      "Id": "C:\\Users\\Armand Njomo\\source\\repos\\ArticlesPricesWfBlazor\\ArticlesPricesWfBlazor\\wwwroot\\css\\app.css",
+      "PackagePath": "staticwebassets\\css\\app.css"
+    },
+    {
+      "Id": "C:\\Users\\Armand Njomo\\source\\repos\\ArticlesPricesWfBlazor\\ArticlesPricesWfBlazor\\wwwroot\\css\\bootstrap\\bootstrap.min.Designer.cs",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.Designer.cs"
+    },
+    {
+      "Id": "C:\\Users\\Armand Njomo\\source\\repos\\ArticlesPricesWfBlazor\\ArticlesPricesWfBlazor\\wwwroot\\css\\bootstrap\\bootstrap.min.cs",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.cs"
+    },
+    {
+      "Id": "C:\\Users\\Armand Njomo\\source\\repos\\ArticlesPricesWfBlazor\\ArticlesPricesWfBlazor\\wwwroot\\index.Designer.html",
+      "PackagePath": "staticwebassets\\index.Designer.html"
+    },
+    {
+      "Id": "C:\\Users\\Armand Njomo\\source\\repos\\ArticlesPricesWfBlazor\\ArticlesPricesWfBlazor\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0-windows\\staticwebassets\\msbuild.ArticlesPricesWfBlazor.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0-windows\\staticwebassets\\msbuild.build.ArticlesPricesWfBlazor.props",
+      "PackagePath": "build\\ArticlesPricesWfBlazor.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0-windows\\staticwebassets\\msbuild.buildMultiTargeting.ArticlesPricesWfBlazor.props",
+      "PackagePath": "buildMultiTargeting\\ArticlesPricesWfBlazor.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0-windows\\staticwebassets\\msbuild.buildTransitive.ArticlesPricesWfBlazor.props",
+      "PackagePath": "buildTransitive\\ArticlesPricesWfBlazor.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

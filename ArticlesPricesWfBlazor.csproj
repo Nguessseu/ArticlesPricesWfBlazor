@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="App.xaml" />
+    <None Remove="Components\Layout\MainLayout.razor.css" />
+    <None Remove="Components\Layout\NavMenu.razor.css" />
+    <None Remove="MainPage.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Components\Layout\MainLayout.razor.css" />
+    <Content Include="Components\Layout\NavMenu.razor.css" />
+    <Content Include="MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Grpc.AspNetCore" Version="2.61.0" />
+    <PackageReference Include="Grpc.Net.Client" Version="2.61.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebView.WindowsForms" Version="8.0.10" />
+    <PackageReference Include="protobuf-net.Grpc" Version="1.1.1" />
+    <PackageReference Include="Unity" Version="5.11.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="ERP.Backend.Interface">
+      <HintPath>..\..\ERP.Backend.Prototype\ERP.Backend.Interface\bin\Debug\net8.0\ERP.Backend.Interface.dll</HintPath>
+    </Reference>
+    <Reference Include="ERP.Backend.Models">
+      <HintPath>..\..\ERP.Backend.Prototype\ERP.Backend.Interface\bin\Debug\net8.0\ERP.Backend.Models.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
